@@ -34,7 +34,6 @@ public class prob3 {
         }
 
         return P;
-
     }
 
     public static List<Integer> subSetSum(List<Integer> S, int k) {
