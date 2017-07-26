@@ -1,79 +1,65 @@
 package lab1;
 
-import java.util.HashSet;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Created by Bi on 7/25/17.
  */
-
-
-
-/**
- * Created by anirudh on 12/5/15.
- */
 public class prob3 {
 
-    /**
-     * The collection for storing the unique sets that sum to a target.
-     */
-    private static HashSet<String> allSubsets = new HashSet<>();
+    public static List<List<Integer>> powerSet(List<Integer> list) {
 
-    /**
-     * The String token
-     */
-    private static final String token = " ";
+        List<List<Integer>> P = new ArrayList<>();
+        List<Integer> S = new ArrayList<>();
+        P.add(S);
+        if (list.isEmpty()) {
+            return P;
+        }
 
-    /**
-     * The method for finding the subsets that sum to a target.
-     *
-     * @param input  The input array to be processed for subset with particular sum
-     * @param target The target sum we are looking for
-     * @param ramp   The Temporary String to be beefed up during recursive iterations(By default value an empty String)
-     * @param index  The index used to traverse the array during recursive calls
-     */
-    public static void findTargetSumSubsets(int[] input, int target, String ramp, int index) {
+        while (!list.isEmpty()) {
+            int f = list.remove(0);
 
-        if(index > (input.length - 1)) {
-            if(getSum(ramp) == target) {
-                allSubsets.add(ramp);
+            List<List<Integer>> temp = new ArrayList<>();
+
+            for (List<Integer> x: P) {
+                temp.add(x);
             }
-            return;
+
+            for (List<Integer> x: temp) {
+                List<Integer> T = new ArrayList<>();
+                T.addAll(x);
+                T.add(f);
+                P.add(T);
+            }
         }
 
-        //First recursive call going ahead selecting the int at the currenct index value
-        findTargetSumSubsets(input, target, ramp + input[index] + token, index + 1);
-        //Second recursive call going ahead WITHOUT selecting the int at the currenct index value
-        findTargetSumSubsets(input, target, ramp, index + 1);
+        return P;
+
     }
 
-    /**
-     * A helper Method for calculating the sum from a string of integers
-     *
-     * @param intString the string subset
-     * @return the sum of the string subset
-     */
-    private static int getSum(String intString) {
-        int sum = 0;
-        StringTokenizer sTokens = new StringTokenizer(intString, token);
-        while (sTokens.hasMoreElements()) {
-            sum += Integer.parseInt((String) sTokens.nextElement());
+    public static List<Integer> subSetSum(List<Integer> S, int k) {
+        List<List<Integer>> subSet = powerSet(S);
+        for (List<Integer> sub: subSet) {
+            int sum = 0;
+            for (Integer i: sub) {
+                sum += i;
+            }
+            if (sum == k) {
+                return sub;
+            }
         }
-        return sum;
+        return null;
     }
 
-    /**
-     * Cracking it up here : )
-     *
-     * @param args command line arguments.
-     */
     public static void main(String[] args) {
-        int [] n =  {24, 1, 15, 3, 4, 15, 3};
-        int counter = 1;
-        prob3.findTargetSumSubsets(n, 30, "", 0);
-        for (String str: allSubsets) {
-            System.out.println(counter + ") " + str);
-            counter++;
-        }
+        List<Integer> list = new ArrayList<>();
+        list.add(24);
+        list.add(1);
+        list.add(15);
+        list.add(3);
+        list.add(4);
+        list.add(15);
+        list.add(3);
+        System.out.println(subSetSum(list, 55));
     }
 }
