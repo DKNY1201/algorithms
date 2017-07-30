@@ -22,3 +22,17 @@ public class InsertionSort extends Sorter {
 		  return anArray;
 	}
 }
+
+
+//Algorithm mergeSort(S)
+//	Input sequence S with n integers
+//	Output sequence S sorted
+//	if S.size() > 1 then
+//		if S.size() <= 20 then
+//			insertionSort(S)
+//		else
+//			(S1, S2) <- partition(S, n/2)
+//			mergeSort(S1)
+//			mergeSort(S2)
+//			S <- merge(S1, S2)
+//	return S
