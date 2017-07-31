@@ -29,7 +29,9 @@ public class MergeSort extends Sorter {
 		
 		//view the range [lowerBound,upperBound] as two arrays
         //[lowerBound, mid], [mid+1,upperBound] to be merged
-		int mid = upperPointer -1;  
+		int mid = upperPointer -1;
+
+//		System.out.println(mid + " === " + upperBound);
 		
 		while(lowerPointer <= mid && upperPointer <= upperBound){
 			if(theArray[lowerPointer] < theArray[upperPointer]){
@@ -58,37 +60,18 @@ public class MergeSort extends Sorter {
 	
 	void mergeSort(int[] tempStorage, int lower, int upper) {
 		if(lower==upper){
+			System.out.println("==");
 			return;
 		}
-
-		if (upper - lower <= 20) {
-			insertionSort(lower, upper);
-		} else {
+		else {
 			int mid = (lower+upper)/2;
+			System.out.println(lower+ " " + upper);
 			mergeSort(tempStorage,lower,mid);  //sort left half
 			mergeSort(tempStorage,mid+1, upper); //sort right half
 			merge(tempStorage,lower,mid+1,upper); //merge them
 		}
 	}
 
-	public void insertionSort(int lower, int upper) {
-		int temp = 0; // store value of current element in loop
-		int j = 0; // store current index of element
-
-		for (int i = lower; i <= upper; i++) {
-			temp = theArray[i];
-			j = i;
-
-			while (j > 0 && temp < theArray[j - 1]) {
-				theArray[j] = theArray[j - 1];
-				j--;
-			}
-
-			theArray[j] = temp;
-		}
-	}
-	
-	
 	//set up routines
 	public static void main(String[] args){
 		MergeSort ms = new MergeSort();
@@ -147,7 +130,7 @@ public class MergeSort extends Sorter {
 	
 	private void displayArray(int[] arr){
 		for(int i = 0; i < arr.length; ++i){
-			System.out.print(arr[i] + " ");
+			System.out.print(arr[i] + ", ");
 		}
 	}
 
