@@ -60,12 +60,10 @@ public class MergeSort extends Sorter {
 	
 	void mergeSort(int[] tempStorage, int lower, int upper) {
 		if(lower==upper){
-			System.out.println("==");
 			return;
 		}
 		else {
 			int mid = (lower+upper)/2;
-			System.out.println(lower+ " " + upper);
 			mergeSort(tempStorage,lower,mid);  //sort left half
 			mergeSort(tempStorage,mid+1, upper); //sort right half
 			merge(tempStorage,lower,mid+1,upper); //merge them
