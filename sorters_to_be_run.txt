@@ -3,3 +3,4 @@ BubbleSort1
 BubbleSort2
 MergeSort
 MergeSortPlus
+MyBST
