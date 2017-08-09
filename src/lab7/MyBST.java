@@ -322,9 +322,8 @@ public class MyBST extends Sorter {
 		for (int i = 0; i < arr.length; i++) {
 			insert(arr[i]);
 		}
-		
-		countNode(root);
-		sortedArr = new int[count];
+
+		sortedArr = new int[arr.length];
 		
 		sort(root);
 		return sortedArr;
